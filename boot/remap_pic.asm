@@ -1,5 +1,5 @@
 remap_pic:
-pusha
+pushad
 mov al, 0x11  ; initialize command
 out 0x20, al  ; master pic
 out 0x80, al  ; buffer instruction to let pic process previous io
@@ -30,11 +30,11 @@ out 0x80, al
 out 0xA1, al
 out 0x80, al
 
-mov al, 0xFF  ; mask all interrupts off for now
-out 0x21, al
-out 0x80, al
+;mov al, 0xFF  ; mask all interrupts off for now
+;out 0x21, al
+;out 0x80, al
 
-out 0xA1, al
-out 0x80, al
-popa
+;out 0xA1, al
+;out 0x80, al
+popad
 ret
