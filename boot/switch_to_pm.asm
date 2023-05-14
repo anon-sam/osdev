@@ -24,6 +24,7 @@ switch_to_pm:
 
 	mov ebp, 0x90000
 	mov esp, ebp
+	call init_idt
 	lidt [idt_descriptor]
 	call remap_pic
 	sti
