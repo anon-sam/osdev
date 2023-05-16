@@ -33,8 +33,8 @@ load_kernel:
 
 ; Global variables
 BOOT_DRIVE db 0
-MSG_REAL_MODE db "Started in 16-bit Real mode\n",0
-MSG_LOAD_KERNEL db "Loading kernel into memory\n",0
+MSG_REAL_MODE db "Started in 16-bit Real mode",0xd,0xa,0
+MSG_LOAD_KERNEL db "Loading kernel into memory",0xd,0xa,0
 
 ;Bootsector padding
 times 510-($-$$) db 0

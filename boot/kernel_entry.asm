@@ -18,5 +18,6 @@ BEGIN_PM:
 %include "idt.asm"
 %include "remap_pic.asm"
 %include "gdt.asm"
+%include "isr.asm"
 
 MSG_PROT_MODE db "Successfully landed in protected mode",0
