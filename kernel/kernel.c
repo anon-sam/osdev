@@ -6,6 +6,6 @@ void main() {
   char a[] = "Hello World\n";
   //print_at(a,0,0);
   print(a);
-  //volatile int k = 0;
-  //volatile int p = 1/k;
+  volatile int k = 0;
+  volatile int p = 1/k;
 }

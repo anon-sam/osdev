@@ -3,7 +3,7 @@ num_entries equ 32
 
 ; 32 for software interrupts reserved by intel, 16 hardware interrupts from irq
 ; 22-31 are unused reserved
-; irqs are hopefully handled by pic remapping
+; need to add handlers for hardware interrupts later, currently all irqs are masked off
 [extern isr1]
 [extern isr2]
 [extern isr3]
@@ -45,14 +45,13 @@ idt_end:
 
 init_idt:
   pushad
-  mov ax,0
+  mov ecx,0
   mov edx, 0
   idt_loop:
-	cmp eax, num_entries
+	cmp ecx, num_entries
 	jge init_done
-	shld ecx, eax, 4
 	mov ebx, [isr_list + ecx]
-	mov word [idt_start + edx], bx
+	mov [idt_start + edx], bx
 	add edx, 2
 	mov word [idt_start + edx], CODE_SEG
 	add edx, 2
@@ -61,9 +60,9 @@ init_idt:
 	mov byte [idt_start + edx], 0x8f
 	add edx, 1
 	shr ebx,16
-	mov word [idt_start + edx], bx
+	mov [idt_start + edx], bx
 	add edx, 2
-	add ax, 1
+	add ecx, 4
 	jmp idt_loop
   init_done:
 	popad
